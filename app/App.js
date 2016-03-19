@@ -6,7 +6,7 @@ import {deepOrange500} from 'material-ui/lib/styles/colors';
 import FlatButton from 'material-ui/lib/flat-button';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
-
+import freezer from './store/store'
 const styles = {
   container: {
     textAlign: 'center',
@@ -21,6 +21,10 @@ const muiTheme = getMuiTheme({
 });
 
 class App extends React.Component {
+  componentDidMount(){
+      var me = this;
+      freezer.on('update', function(){ me.forceUpdate() });
+  }
   constructor(props, context) {
     super(props, context);
     this.handleRequestClose = this.handleRequestClose.bind(this);
@@ -44,6 +48,7 @@ class App extends React.Component {
   }
 
   render() {
+    var state = freezer.get();
     const standardActions = (
       <FlatButton
         label="Okey"
