@@ -7,10 +7,12 @@ import FlatButton from 'material-ui/lib/flat-button';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import freezer from './store/store'
+import MCREUIAppBar from './mcreui_appbar.js'
+
 const styles = {
   container: {
     textAlign: 'center',
-    paddingTop: 200,
+    paddingTop: 0,
   },
 };
 
@@ -19,6 +21,8 @@ const muiTheme = getMuiTheme({
     accent1Color: deepOrange500,
   },
 });
+
+
 
 class App extends React.Component {
   componentDidMount(){
@@ -49,6 +53,8 @@ class App extends React.Component {
 
   render() {
     var state = freezer.get();
+
+
     const standardActions = (
       <FlatButton
         label="Okey"
@@ -60,6 +66,7 @@ class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
+        <MCREUIAppBar />
           <Dialog
             open={this.state.open}
             title="Super Secret Password"
