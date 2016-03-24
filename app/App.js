@@ -66,7 +66,7 @@ class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-        <MCREUIAppBar />
+        <MCREUIAppBar leftNavOpen={state.leftNavOpen}/>
           <Dialog
             open={this.state.open}
             title="Super Secret Password"

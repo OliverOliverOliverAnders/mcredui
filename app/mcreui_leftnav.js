@@ -6,21 +6,20 @@ export default class MCREUILeftNav extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {open: true};
+    this.state = {open: this.props.open};
   };
 
 
 
-  handleClose () { this.setState({open: false}) } ;
+  handleClose () { this.setState({open: false}) }  ;
 
   render() {
     return (
       <div>
         <LeftNav
           docked={false}
-          disableSwipeToOpen={false}
           width={200}
-          open={this.state.open}
+          open={this.props.open}
           onRequestChange={open => this.setState({open})}
         >
           <MenuItem onTouchTap={this.handleClose}>Menu Item</MenuItem>
