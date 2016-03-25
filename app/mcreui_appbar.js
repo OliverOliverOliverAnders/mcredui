@@ -1,6 +1,7 @@
 import React from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 import MCREUILeftNav from './mcreui_leftnav.js'
+import freezer from './store/store.js'
 
 
 const MCREUIAppBar=React.createClass({
@@ -12,7 +13,8 @@ const MCREUIAppBar=React.createClass({
   };
   },
   handleTouchTapLeftIconButton(){
-    alert("lkjlj")
+
+    freezer.trigger('leftNavOpen:toggle');
   },
   render(){
     return(

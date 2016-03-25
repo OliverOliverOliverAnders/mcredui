@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import freezer from './store/store'
+import './store/storeactions'
 import MCREUIAppBar from './mcreui_appbar.js'
 
 const styles = {
@@ -66,7 +67,7 @@ class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-        <MCREUIAppBar leftNavOpen={state.leftNavOpen}/>
+        <MCREUIAppBar leftNavOpen={state.navigation.leftNavOpen}/>
           <Dialog
             open={this.state.open}
             title="Super Secret Password"
@@ -76,7 +77,7 @@ class App extends React.Component {
             1-2-3-4-5
           </Dialog>
           <h1>material-ui</h1>
-          <h2>example project</h2>
+          <h2>{state.navigation.page}</h2>
           <RaisedButton
             label="Super Secret Password"
             primary={true}
