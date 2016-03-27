@@ -45,8 +45,11 @@ class App extends React.Component {
       open: false,
     });
   }
-
+  handleLoadName(){
+    freezer.trigger('readDocument',"test","eins","applicationName")
+  }
   handleTouchTap() {
+    this.handleLoadName();
     this.setState({
       open: true,
     });
@@ -67,7 +70,7 @@ class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-        <MCREUIAppBar leftNavOpen={state.navigation.leftNavOpen}/>
+        <MCREUIAppBar leftNavOpen={state.navigation.leftNavOpen} applicationName={state.applicationName}/>
           <Dialog
             open={this.state.open}
             title="Super Secret Password"

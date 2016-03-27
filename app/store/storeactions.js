@@ -1,7 +1,7 @@
 import freezer from './store.js'
 
-var cradle = require('cradle');
-var db = new(cradle.Connection)().database('test');
+import cradle from 'cradle'
+
 
 freezer.on('page:select',function(page){
   var state=freezer.get();
@@ -21,7 +21,7 @@ freezer.on('leftNavOpen:toggle', function( ){
 });
 
 freezer.on('readDocument',function(dbName,dbId,id){
-  var db = new(cradle.Connection)().database(dbName;
+  var db = new(cradle.Connection)().database(dbName);
   db.get(dbId, function (err, doc) {
       var state=freezer.get();
       state.dbs[dbName].set({id:doc});
