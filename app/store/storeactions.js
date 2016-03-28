@@ -24,7 +24,9 @@ freezer.on('readDocument',function(dbName,dbId,id){
   var db = nano.db.use(dbName);
   db.get(dbId, function(err, body) {
     var state=freezer.get();
-    state.dbs[dbName].set({id:body});
+    var mobj={};
+    mobj[id]=body;
+    state.dbs[dbName].set(mobj);
   });
 
 })

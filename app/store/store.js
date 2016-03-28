@@ -5,7 +5,7 @@ var freezer = new Freezer({
 		leftNavOpen:false,
 		page:"one"
 	},
-	dbs:{test:{}},
+	dbs:{test:{applicationName:{name:"THENAME"}}},
 	leftNavOpen:false
 });
 
