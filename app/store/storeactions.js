@@ -1,6 +1,6 @@
 import freezer from './store.js'
 
-import cradle from 'cradle'
+var nano = require('nano')('http://localhost:5984');
 
 
 freezer.on('page:select',function(page){
@@ -21,10 +21,10 @@ freezer.on('leftNavOpen:toggle', function( ){
 });
 
 freezer.on('readDocument',function(dbName,dbId,id){
-  var db = new(cradle.Connection)().database(dbName);
-  db.get(dbId, function (err, doc) {
-      var state=freezer.get();
-      state.dbs[dbName].set({id:doc});
+  var db = nano.db.use(dbName);
+  db.get(dbId, function(err, body) {
+    var state=freezer.get();
+    state.dbs[dbName].set({id:body});
   });
 
 })
