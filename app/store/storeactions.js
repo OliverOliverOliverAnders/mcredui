@@ -21,6 +21,7 @@ freezer.on('leftNavOpen:toggle', function( ){
 });
 
 freezer.on('readDocument',function(dbName,dbId,id){
+  /* read document from dbName with Id and store it under id in state.dbs.dbName.id */
   var db = nano.db.use(dbName);
   db.get(dbId, function(err, body) {
     var state=freezer.get();

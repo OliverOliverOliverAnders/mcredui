@@ -21,7 +21,7 @@ const MCREUIAppBar=React.createClass({
       <div>
     <AppBar
       onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
-      title={this.props.applicationName}
+      title={this.props.applicationName+":"+ this.props.pageName}
       iconClassNameRight="muidocs-icon-navigation-expand-more"
     />
   <MCREUILeftNav open={this.props.leftNavOpen}/>

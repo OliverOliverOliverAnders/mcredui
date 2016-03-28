@@ -59,33 +59,13 @@ class App extends React.Component {
     var state = freezer.get();
 
 
-    const standardActions = (
-      <FlatButton
-        label="Okey"
-        secondary={true}
-        onTouchTap={this.handleRequestClose}
-      />
-    );
+    
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div style={styles.container}> 
-        <MCREUIAppBar leftNavOpen={state.navigation.leftNavOpen} applicationName={state.dbs.test.applicationName.name}/>
-          <Dialog
-            open={this.state.open}
-            title="Super Secret Password"
-            actions={standardActions}
-            onRequestClose={this.handleRequestClose}
-          >
-            1-2-3-4-5
-          </Dialog>
-          <h1>material-ui</h1>
+        <div style={styles.container}>
+        <MCREUIAppBar leftNavOpen={state.navigation.leftNavOpen} applicationName={state.dbs.test.applicationName.name} pageName={state.navigation.page}/>
           <h2>{state.navigation.page}</h2>
-          <RaisedButton
-            label="Super Secret Password"
-            primary={true}
-            onTouchTap={this.handleTouchTap}
-          />
         </div>
       </MuiThemeProvider>
     );
