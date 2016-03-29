@@ -23,8 +23,8 @@ export default class MCREUILeftNav extends React.Component {
           width={200}
           open={this.props.open}
         >
-          <MenuItem onTouchTap={function(){ freezer.trigger('page:select',"page 1")}}>Menu Item</MenuItem>
-          <MenuItem onTouchTap={function(){ freezer.trigger('page:select',"page 2")}}>Menu Item 2</MenuItem>
+          <MenuItem onTouchTap={function(){ freezer.trigger('page:select',"EventPage")}}>Events</MenuItem>
+          <MenuItem onTouchTap={function(){ freezer.trigger('page:select',"Page 2")}}>Menu Item 2</MenuItem>
         </LeftNav>
       </div>
     );

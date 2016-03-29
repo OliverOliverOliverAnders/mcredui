@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import freezer from './store/store'
 import './store/storeactions'
 import MCREUIAppBar from './mcreui_appbar.js'
+import MCREUIEventPage from './mcreui_events.js'
 
 const styles = {
   container: {
@@ -57,15 +58,24 @@ class App extends React.Component {
 
   render() {
     var state = freezer.get();
+    var page=<div>empty</div>;
+    if (state.navigation.page=="EventPage"){
+      page=<MCREUIEventPage />;
+    }
+    else {
+      page=<div>empty</div>;
+    }
 
 
-    
+
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
+        
         <MCREUIAppBar leftNavOpen={state.navigation.leftNavOpen} applicationName={state.dbs.test.applicationName.name} pageName={state.navigation.page}/>
           <h2>{state.navigation.page}</h2>
+          {page}
         </div>
       </MuiThemeProvider>
     );
