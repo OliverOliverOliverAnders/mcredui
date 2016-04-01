@@ -8,11 +8,20 @@ var ReactDataGrid = require('react-data-grid/addons');
 
 const MCREUIEventList=React.createClass({
 
-  getInitialState() {
-  return {
+  getInitialState()
+  {
+    return {
+      myTableData: [
+          {name: 'Rylan'},
+          {name: 'Amelia'},
+          {name: 'Estevan'},
+          {name: 'Florence'},
+          {name: 'Tressa'},
+        ]
+      };
 
 
-  };
+
   },
   render(){
 
@@ -23,33 +32,24 @@ const rows = [
   ['a3', 'b3', 'c3'],
   // .... and more
 ];
-return (  <Table
-    rowHeight={50}
-    rowsCount={rows.length}
-    width={5000}
-    height={5000}
-    headerHeight={50}>
-    <Column
-      header={<Cell>Col 1</Cell>}
-      cell={<Cell>Column 1 static content</Cell>}
-      width={2000}
-    />
-    <Column
-      header={<Cell>Col 2</Cell>}
-      cell={<MyCustomCell mySpecialProp="column2" />}
-      width={1000}
-    />
-    <Column
-      header={<Cell>Col 3</Cell>}
-      cell={({rowIndex, ...props}) => (
-        <Cell {...props}>
-          Data for column 3: {rows[rowIndex][2]}
-        </Cell>
-      )}
-      width={2000}
-    />
-  </Table>);
 
+return (   <Table
+        rowsCount={this.state.myTableData.length}
+        rowHeight={50}
+        headerHeight={50}
+        width={1000}
+        height={500}>
+        <Column
+          header={<Cell>Name</Cell>}
+          cell={props => (
+            <Cell {...props}>
+              {this.state.myTableData[props.rowIndex].name}
+            </Cell>
+          )}
+          width={200}
+        />
+      </Table>
+    );
   }
 });
 
@@ -62,6 +62,8 @@ return (  <Table
     };
     },
     render(){
+      var a=[1,2,3]
+      var b=[4,5,...a];
       return(
         <div>
           <h1>EventView</h1>
