@@ -9,6 +9,8 @@ import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import freezer from './store/store'
 import './store/storeactions'
 import 'fixed-data-table/dist/fixed-data-table.css'
+
+import './eventList/initStore.js'
 import MCREUIAppBar from './mcreui_appbar.js'
 import MCREUIEventPage from './mcreui_events.js'
 

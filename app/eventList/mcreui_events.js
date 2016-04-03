@@ -1,7 +1,7 @@
 /* EventListPage */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import freezer from './store/store.js'
+import freezer from './../store/store.js'
 import 'fixed-data-table/dist/fixed-data-table.css'
 import {Table, Column, Cell} from 'fixed-data-table';
 const MCREUIEventList=React.createClass({
@@ -11,8 +11,7 @@ const MCREUIEventList=React.createClass({
     freezer.trigger('eventList:scrollPosition',this.state.x, this.state.y);
   },
 
-  getInitialState()
-  {
+  getInitialState(){
 
     return {
       /* set initial x,y*/
