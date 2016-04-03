@@ -1,65 +1,74 @@
 /* EventListPage */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import freezer from './store/store.js'
+import 'fixed-data-table/dist/fixed-data-table.css'
 import {Table, Column, Cell} from 'fixed-data-table';
-
-var ReactDataGrid = require('react-data-grid');
-var ReactDataGrid = require('react-data-grid/addons');
-
 const MCREUIEventList=React.createClass({
+
+  componentWillUnmount(){
+    /* inform about last scroll position */
+    freezer.trigger('eventList:scrollPosition',this.state.x, this.state.y);
+  },
 
   getInitialState()
   {
+
     return {
-      myTableData: [
-          {name: 'Rylan'},
-          {name: 'Amelia'},
-          {name: 'Estevan'},
-          {name: 'Florence'},
-          {name: 'Tressa'},
-        ]
-      };
+      /* set initial x,y*/
+      x:this.props.x,
+      y:this.props.y
+    };
 
-
+  },
+  scrollHandle(x,y){
+    /* remember x and y it will be triggered if component get unmounted */
+    this.setState({y:y,x:x});
 
   },
   render(){
 
-// Table data as a list of array.
-const rows = [
-  ['a1', 'b1', 'c1'],
-  ['a2', 'b2', 'c2'],
-  ['a3', 'b3', 'c3'],
-  // .... and more
-];
-
-return (   <Table
-        rowsCount={this.state.myTableData.length}
-        rowHeight={50}
-        headerHeight={50}
-        width={1000}
-        height={500}>
-        <Column
-          header={<Cell>Name</Cell>}
-          cell={props => (
+    // Table data as a list of array.
+    const rows = [
+    ['a1', 'b1', 'c1'],
+    ['a2', 'b2', 'c2'],
+    ['a3', 'b3', 'c3'],
+    ['a4', 'b4', 'c4'],
+    ['a5', 'b5', 'c5']
+    // .... and more
+    ];
+    this.table=
+    <Table
+      rowsCount={5}
+      rowHeight={50}
+      headerHeight={50}
+      width={1000}
+      scrollTop={this.props.y}
+      scrollLeft={this.props.x}
+      onScrollEnd={this.scrollHandle}
+      height={200}>
+      <Column
+        header={<Cell>Name</Cell>}
+        cell={props =>
+          (
             <Cell {...props}>
-              {this.state.myTableData[props.rowIndex].name}
+              {rows[props.rowIndex][0]}
             </Cell>
           )}
           width={200}
-        />
+          />
       </Table>
-    );
-  }
-});
+      return (this.table);
+    }
+  });
 
- const MCREUIEventView=React.createClass({
+  const MCREUIEventView=React.createClass({
 
     getInitialState() {
-    return {
+      return {
 
 
-    };
+      };
     },
     render(){
       var a=[1,2,3]
@@ -67,28 +76,28 @@ return (   <Table
       return(
         <div>
           <h1>EventView</h1>
-      </div>
-  )
+        </div>
+      )
     }
   });
 
-const MCREUIEventPage=React.createClass({
+  const MCREUIEventPage=React.createClass({
 
 
     getInitialState() {
-    return {
+      return {
 
 
-    };
+      };
     },
     render(){
 
       return(
         <div>
-          <MCREUIEventList />
+          <MCREUIEventList y={this.props.y}/>
           <MCREUIEventView />
-      </div>
-  )
+        </div>
+      )
     }
   });
-export default MCREUIEventPage;
+  export default MCREUIEventPage;

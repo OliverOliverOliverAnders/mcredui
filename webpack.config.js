@@ -11,7 +11,7 @@ module.exports = {
   },
 
   module: {
-    noParse: /node_modules\/json-schema\/lib\/validate\.js/,  
+    noParse: /node_modules\/json-schema\/lib\/validate\.js/,
     loaders: [
       {
         test: /\.json$/,
@@ -24,7 +24,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css?modules!postcss'
+        loader: 'style-loader!css-loader'
       }
     ]
   },

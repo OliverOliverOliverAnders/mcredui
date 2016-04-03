@@ -8,6 +8,7 @@ import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import freezer from './store/store'
 import './store/storeactions'
+import 'fixed-data-table/dist/fixed-data-table.css'
 import MCREUIAppBar from './mcreui_appbar.js'
 import MCREUIEventPage from './mcreui_events.js'
 
@@ -60,7 +61,10 @@ class App extends React.Component {
     var state = freezer.get();
     var page=<div>empty</div>;
     if (state.navigation.page=="EventPage"){
-      page=<MCREUIEventPage />;
+      page=<MCREUIEventPage
+        y={state.eventList.scrollPosition.y}
+        x={state.eventList.scrollPosition.x}
+        />;
     }
     else {
       page=<div>empty</div>;
@@ -72,7 +76,7 @@ class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-        
+
         <MCREUIAppBar leftNavOpen={state.navigation.leftNavOpen} applicationName={state.dbs.test.applicationName.name} pageName={state.navigation.page}/>
           <h2>{state.navigation.page}</h2>
           {page}
