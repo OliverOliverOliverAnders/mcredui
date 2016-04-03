@@ -4,6 +4,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import App from './App';
 import './main.css';
+import 'fixed-data-table/dist/fixed-data-table.css'
 
 //Needed for onTouchTap
 //Can go away when react 1.0 release

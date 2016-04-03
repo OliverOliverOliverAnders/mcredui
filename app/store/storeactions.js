@@ -11,6 +11,19 @@ freezer.on('page:select',function(page){
   state.navigation.run();
 
 });
+freezer.on('eventList:scrollPosition',function(x,y){
+  var state=freezer.get();
+  var data={x:x,y:y};
+  state.eventList.scrollPosition.set(data);
+
+});
+freezer.on('put',function(name,entry){
+  var state=freezer.get();
+  var data={};
+  data[name]=entry;
+  state.set(data);
+
+})
 freezer.on('leftNavOpen:toggle', function( ){
 
 	var state=freezer.get();
