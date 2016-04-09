@@ -10,9 +10,8 @@ import freezer from './store/store'
 import './store/storeactions'
 import 'fixed-data-table/dist/fixed-data-table.css'
 
-import './eventList/initStore.js'
 import MCREUIAppBar from './mcreui_appbar.js'
-import MCREUIEventPage from './mcreui_events.js'
+import MCREUIEventPage from './eventList/mcreui_events.js'
 
 const styles = {
   container: {
@@ -64,8 +63,8 @@ class App extends React.Component {
     var page=<div>empty</div>;
     if (state.navigation.page=="EventPage"){
       page=<MCREUIEventPage
-        y={state.eventList.scrollPosition.y}
-        x={state.eventList.scrollPosition.x}
+        y={state.MCREUIEventListData.scrollPosition.y}
+        x={state.MCREUIEventListData.scrollPosition.x}
         />;
     }
     else {

@@ -4,11 +4,28 @@ import ReactDOM from 'react-dom';
 import freezer from './../store/store.js'
 import 'fixed-data-table/dist/fixed-data-table.css'
 import {Table, Column, Cell} from 'fixed-data-table';
+
+'initial store data structure '
+freezer.trigger(
+  'put',
+  'MCREUIEventListData',
+  {
+    scrollPosition:{x:0,y:0},
+    events:[],
+    header:[
+      {header:"Bussiness Date"},
+      {header:"Bussiness Date"}
+      ]
+  }
+  );
+
+
+
 const MCREUIEventList=React.createClass({
 
   componentWillUnmount(){
     /* inform about last scroll position */
-    freezer.trigger('eventList:scrollPosition',this.state.x, this.state.y);
+    freezer.trigger('eventList:scrollPosition','MCREUIEventListData',this.state.x, this.state.y);
   },
 
   getInitialState(){

@@ -11,10 +11,10 @@ freezer.on('page:select',function(page){
   state.navigation.run();
 
 });
-freezer.on('eventList:scrollPosition',function(x,y){
+freezer.on('eventList:scrollPosition',function(eventListId,x,y){
   var state=freezer.get();
   var data={x:x,y:y};
-  state.eventList.scrollPosition.set(data);
+  state[eventListId].scrollPosition.set(data);
 
 });
 freezer.on('put',function(name,entry){
