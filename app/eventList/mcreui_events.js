@@ -22,6 +22,27 @@ freezer.trigger(
 
 
 const MCREUIEventList=React.createClass({
+  propTypes:{
+    y:React.PropTypes.number,
+    x:React.PropTypes.number,
+    rowCount:React.PropTypes.number,
+    rowHeight:React.PropTypes.number,
+    rows:React.PropTypes.array
+  },
+  getDefaultProps: function() {
+    return {
+      rowHeight:40,
+      rowCount:5,
+      columns:[],
+      rows: [
+      { Name:'a1', Name2:'b1', Name3:'c1'},
+      { Name:'a1', Name2:'b1', Name3:'c1'},
+      { Name:'a1', Name2:'b1', Name3:'c1'},
+      { Name:'a1', Name2:'b1', Name3:'c1'},
+      { Name:'a1', Name2:'b1', Name3:'c1'}
+          ]
+    };
+  },
 
   componentWillUnmount(){
     /* inform about last scroll position */
@@ -33,9 +54,19 @@ const MCREUIEventList=React.createClass({
     return {
       /* set initial x,y*/
       x:this.props.x,
-      y:this.props.y
+      y:this.props.y,
+      /* derive columns from props if available */
+      columns:this._getColumns()
     };
 
+  },
+  _getColumns(){
+    if (this.props.columns.length==0){
+      return Object.keys(this.props.rows[0]);
+    }
+    else{
+      return this.props.columns
+    }
   },
   scrollHandle(x,y){
     /* remember x and y it will be triggered if component get unmounted */
@@ -44,20 +75,24 @@ const MCREUIEventList=React.createClass({
   },
   render(){
 
-    // Table data as a list of array.
-    const rows = [
-    ['a1', 'b1', 'c1'],
-    ['a2', 'b2', 'c2'],
-    ['a3', 'b3', 'c3'],
-    ['a4', 'b4', 'c4'],
-    ['a5', 'b5', 'c5']
-    // .... and more
-    ];
+    /* create Columns */
+    var columns=this.state. columns.map(column =>(
+      <Column
+        header={<Cell>column</Cell>}
+        cell={props =>
+        (
+          <Cell {...props}>
+            {rows[props.rowIndex][column]}
+          </Cell>
+        )}
+      />
+  ));
+  /* and table */
     this.table=
     <Table
-      rowsCount={5}
-      rowHeight={50}
-      headerHeight={50}
+      rowsCount={this.props.rowCount}
+      rowHeight={this.props.rowHeight}
+      headerHeight={this.props.rowHeight}
       width={1000}
       scrollTop={this.props.y}
       scrollLeft={this.props.x}
@@ -68,7 +103,7 @@ const MCREUIEventList=React.createClass({
         cell={props =>
           (
             <Cell {...props}>
-              {rows[props.rowIndex][0]}
+              {this.props.rows[props.rowIndex]["Name"]}
             </Cell>
           )}
           width={200}
