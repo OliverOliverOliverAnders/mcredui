@@ -23,12 +23,13 @@ const MCREUIEventList=React.createClass({
     x:React.PropTypes.number,
     rowCount:React.PropTypes.number,
     rowHeight:React.PropTypes.number,
-    rows:React.PropTypes.array
+    rows:React.PropTypes.array,
+
   },
   getDefaultProps: function() {
     return {
-      rowHeight:0,
-      rowCount:0,
+      rowHeight:50,
+      rowCount:5,
       columns:[],
       rows: [
       { Name:'a1', Name2:'b1', Name3:'c1'},
@@ -51,6 +52,7 @@ const MCREUIEventList=React.createClass({
       /* set initial x,y*/
       x:this.props.x,
       y:this.props.y,
+      rowsCount:this.props.rows.length,
       /* derive columns from props if available */
       columns:this._getColumns()
     };
@@ -86,7 +88,7 @@ const MCREUIEventList=React.createClass({
       /* and table */
       this.table=
       <Table
-        rowsCount={this.props.rowCount}
+        rowsCount={this.state.rowsCount}
         rowHeight={this.props.rowHeight}
         headerHeight={this.props.rowHeight}
         width={1000}

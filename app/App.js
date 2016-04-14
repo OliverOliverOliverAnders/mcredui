@@ -25,7 +25,13 @@ const muiTheme = getMuiTheme({
     accent1Color: deepOrange500,
   },
 });
-
+var rows=[
+{ Name:'aaaa1', Name2:'b1', Name3:'c1'},
+{ Name:'a1', Name2:'b1', Name3:'c1'},
+{ Name:'a1', Name2:'b1', Name3:'c1'},
+{ Name:'a1', Name2:'b1', Name3:'c1'},
+{ Name:'a1', Name2:'b1', Name3:'c1'}
+]
 
 
 class App extends React.Component {
@@ -65,6 +71,7 @@ class App extends React.Component {
       page=<MCREUIEventPage
         y={state.MCREUIEventListData.scrollPosition.y}
         x={state.MCREUIEventListData.scrollPosition.x}
+        rows={rows}
         />;
     }
     else {
